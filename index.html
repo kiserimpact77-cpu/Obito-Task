@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Obito Tasks — قائمة المهام</title>
+  <link rel="icon" href="logo.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="app__header">
+      <img class="app__logo" src="logo.png" alt="شعار Obito Tasks" />
+      <div>
+        <h1>Obito Tasks</h1>
+        <p class="app__subtitle">نظّم يومك وأنجز مهامك بسهولة</p>
+      </div>
+      <a class="download-app" href="obito-tasks.apk" download>تحميل التطبيق</a>
+    </header>
+
+    <form id="task-form" class="task-form" autocomplete="off">
+      <input
+        id="task-input"
+        class="task-form__input"
+        type="text"
+        placeholder="أضف مهمة جديدة..."
+        maxlength="200"
+        aria-label="نص المهمة الجديدة"
+      />
+      <button class="task-form__button" type="submit">إضافة</button>
+    </form>
+
+    <p id="form-error" class="form-error" role="alert" hidden>الرجاء كتابة نص المهمة.</p>
+
+    <section class="toolbar">
+      <span id="counter" class="counter">لا توجد مهام غير مكتملة</span>
+      <div class="filters" role="group" aria-label="تصفية المهام">
+        <button class="filter is-active" type="button" data-filter="all">الكل</button>
+        <button class="filter" type="button" data-filter="active">غير مكتملة</button>
+        <button class="filter" type="button" data-filter="done">مكتملة</button>
+      </div>
+    </section>
+
+    <ul id="task-list" class="task-list"></ul>
+
+    <p id="empty-state" class="empty-state">لا توجد مهام حتى الآن. ابدأ بإضافة مهمة!</p>
+
+    <footer class="app__footer">
+      <button id="clear-done" class="clear-done" type="button">حذف المهام المكتملة</button>
+      <a class="download-app download-app--footer" href="obito-tasks.apk" download>تحميل تطبيق الأندرويد (APK)</a>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
