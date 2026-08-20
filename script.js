@@ -179,11 +179,42 @@
     });
   });
 
-  if (window.cordova) {
-    Array.prototype.forEach.call(document.querySelectorAll(".download-app"), function (link) {
-      link.remove();
+  var menuToggle = document.getElementById("menu-toggle");
+  var menuClose = document.getElementById("menu-close");
+  var sideMenu = document.getElementById("side-menu");
+  var menuOverlay = document.getElementById("side-menu-overlay");
+  var menuDownload = document.getElementById("menu-download");
+
+  function openMenu() {
+    sideMenu.classList.add("is-open");
+    sideMenu.setAttribute("aria-hidden", "false");
+    menuToggle.setAttribute("aria-expanded", "true");
+    menuOverlay.hidden = false;
+    requestAnimationFrame(function () {
+      menuOverlay.classList.add("is-open");
     });
+  }
+
+  function closeMenu() {
+    sideMenu.classList.remove("is-open");
+    sideMenu.setAttribute("aria-hidden", "true");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuOverlay.classList.remove("is-open");
+    setTimeout(function () {
+      menuOverlay.hidden = true;
+    }, 250);
+  }
+
+  menuToggle.addEventListener("click", openMenu);
+  menuClose.addEventListener("click", closeMenu);
+  menuOverlay.addEventListener("click", closeMenu);
+
+  // داخل تطبيق الأندرويد (Cordova) مفيش داعي لزر "تحميل التطبيق" لأنه أصلاً متحمل.
+  // زر "تواصل مع Obito" و"مزيد من منتجات Obito" بيفضلوا موجودين في القائمة الجانبية.
+  if (window.cordova && menuDownload) {
+    menuDownload.remove();
   }
 
   render();
 })();
+
